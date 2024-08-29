@@ -100,7 +100,7 @@ python generate_data_parallel.py --scene pile --object-set blocks2 --num-grasps 
 
 --num-grasps 代表夾取次數 
 
---num-proc 代表幾個process在跑，如果40會跑不動就設定小一點或是1
+--num-proc 代表幾個process在跑，如果設定為40會跑不動就設定小一點或是1
 
 --save-scene 代表產生的data儲存的位置
 
@@ -115,7 +115,7 @@ python scripts/clean_balance_data.py ./data/pile/blocks
 # 產生Occupancy probility
 產生occupancy probility的資料
 ```
-python save_occ_data_parallel.py ./data/pile/blocks 100000 2 --num-proc 40
+python save_occ_data_parallel.py ./data/pile/blocks 100000 2 --num-proc 1
 ```
 # 轉成訓練用格式資料集
 ```
