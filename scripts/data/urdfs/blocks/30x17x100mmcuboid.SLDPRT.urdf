@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="20x87mmcuboid.SLDPRT">
+  <link
+    name="30x17x100mmcuboid">
+    <inertial>
+      <origin
+        xyz="-1.171E-17 -0.0085 1.47665770037451E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.3335" />
+      <inertia
+        ixx="4.2953E-05"
+        ixy="-2.75793596944338E-37"
+        ixz="4.5042E-21"
+        iyy="0.00039376"
+        iyz="4.48546888557005E-22"
+        izz="0.00037169" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://30x17x100mmcuboid/meshes/30x17x100mmcuboid.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+        <texture
+          filename="package://30x17x100mmcuboid/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://30x17x100mmcuboid/meshes/30x17x100mmcuboid.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

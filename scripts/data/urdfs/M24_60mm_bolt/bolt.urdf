@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="bolt">
+  <link
+    name="bolt">
+    <inertial>
+      <origin
+        xyz="-3.70694886070381E-19 3.17610523136278E-18 0.030663"
+        rpy="0 0 0" />
+      <mass
+        value="0.14283" />
+      <inertia
+        ixx="0.00019916"
+        ixy="6.2E-21"
+        ixz="-1.9041E-20"
+        iyy="0.00019916"
+        iyz="-2.49214039024063E-20"
+        izz="3.8808E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 7.03683629758869E-17 -6.84227765783602E-49" />
+      <geometry>
+        <mesh
+          filename="package://bolt/meshes/bolt.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+        <texture
+          filename="package://bolt/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 7.03683629758869E-17 -6.84227765783602E-49" />
+      <geometry>
+        <mesh
+          filename="package://bolt/meshes/bolt.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="triangle.SLDPRT">
+  <link
+    name="triangle">
+    <inertial>
+      <origin
+        xyz="0.0195 0.011258 0.0145"
+        rpy="0 0 0" />
+      <mass
+        value="0.16235" />
+      <inertia
+        ixx="2.1667E-05"
+        ixy="4.1909E-22"
+        ixz="-1.0132E-21"
+        iyy="2.1667E-05"
+        iyz="-1.60157981596563E-21"
+        izz="2.0578E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triangle/meshes/triangle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+        <texture
+          filename="package://triangle/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://triangle/meshes/triangle.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

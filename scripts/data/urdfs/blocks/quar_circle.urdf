@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="quar_circle.SLDPRT">
+  <link
+    name="quar_circle">
+    <inertial>
+      <origin
+        xyz="0.014854 0.014854 0.014"
+        rpy="0 0 0" />
+      <mass
+        value="0.22898" />
+      <inertia
+        ixx="3.456E-05"
+        ixy="5.8826E-06"
+        ixz="-7.12706533150224E-22"
+        iyy="3.456E-05"
+        iyz="1.35700867408679E-21"
+        izz="3.92E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quar_circle/meshes/quar_circle.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+        <texture
+          filename="package://quar_circle/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quar_circle/meshes/quar_circle.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

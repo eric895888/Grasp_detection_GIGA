@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="cube">
+  <link
+    name="cube">
+    <inertial>
+      <origin
+        xyz="6.0846E-17 3.88320953073357E-18 0.03"
+        rpy="0 0 0" />
+      <mass
+        value="1.4508" />
+      <inertia
+        ixx="0.00075283"
+        ixy="9.8829E-20"
+        ixz="3.2682E-19"
+        iyy="0.00075283"
+        iyz="-2.9821E-20"
+        izz="0.00075283" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cube/meshes/cube.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.52941 0.54902 0.54902 1" />
+        <texture
+          filename="package://cube/textures/" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.5707963267949 0 0" />
+      <geometry>
+        <mesh
+          filename="package://cube/meshes/cube.STL" />
+      </geometry>
+    </collision>
+  </link>
+</robot>
