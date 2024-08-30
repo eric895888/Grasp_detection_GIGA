@@ -9,6 +9,10 @@ sudo sh bash ros1_noetic_install.sh
 ```
 就會自動安裝
 
+可以在終端機輸入下方指令測試看看ROS能不能用
+```
+roscore
+```
 ## 2.安裝Anaconda
 推薦安裝在/home/你的使用者名稱/anaconda3 裡面
 conda未啟動解決方式：https://developer.huawei.com/consumer/cn/blog/topic/03940616429410292
@@ -18,38 +22,41 @@ conda未啟動解決方式：https://developer.huawei.com/consumer/cn/blog/topic
 sudo sh Anaconda3-2024.02-1-Linux-x86_64.sh 
 ```
 
-## 3.(推薦)透過.yaml產生已安裝好的環境
+## 3.建立虛擬環境
+(推薦)透過.yaml產生已安裝好的環境
 ```
 conda env create --file environment.yaml --name 自行定義名字
 ```
 
-(不推薦)或是使用作者提供requirements下列指令,但因為open3d版本問題跟skylearn套件改名問題要自行處理
+(不推薦方式！！)使用作者提供requirements下列指令,但因為open3d版本問題跟skylearn套件改名問題要自行處理！！
 ```
 pip install -r requirements.txt
 ```
-
-## 4.套件安裝
+## 4.torch安裝
+使用下方指令安裝torch
 ```
-pip install opencv-contrib-python==4.6.0.66
+pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu118
+```
+其他版本torch參考來源:https://pytorch.org/get-started/previous-versions/ 不要用stable
+
+## 5.套件安裝
+```
+pip install opencv-contrib-python
 pip install numpy==1.22.4
 pip install pytorch-ignite==0.5.0.post2
 pip install pykdtree
 pip install rospkg
 pip install networkx==2.2
+pip install pyserial
+pip install pyqt5
+pip install pytransform3d
+pip install pyrealsense2
 ```
 #目前open3d要是0.12.0!!!!!!!!!不然可能有未知錯誤像是產生core dump 或是 segmentation fault 這東西非常容易版本問題跟其他套件產成錯誤根據gdb追蹤可能是底層cuda調用c++那邊容易出問題
 只靠requirements.txt也許torch少了些其他東西下方為安裝指定torch版本(當下是2.2.2)
 參考來源:https://pytorch.org/get-started/locally/
 
-## 5.torch安裝
-其他版本torch參考來源:https://pytorch.org/get-started/previous-versions/ 不要用stable
 
-其他版本torch範例 pip install torch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0
-```
-pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu118
-```
-
-## 6.測試：
 在python中查看自己對應的版本理論上torch應該是2.2.2 cuda應該是11.8也就是cu118
 終端機裡打上python啟動環境或是vscode中新增一份.py檔案
 
@@ -64,16 +71,30 @@ print(torch.backends.cudnn.version())
 顯示  8700
 ```
 
-## 7.安裝torch-scatter額外函式庫在下方對應的版本如下：
+## 6.安裝torch-scatter額外函式庫在下方對應的版本如下：
+移除舊版torch-scatter
+```
+pip uninstall torch-scatter
+```
+安裝指定版本的torch-scatter
+```
 pip install torch-scatter -f https://data.pyg.org/whl/torch-2.2.2+cu118.html
-
-## 8.安裝vgn
+```
+在終端機的conda環境中打上pip list檢查版本有沒有如下方的torch-scatter版本
+```
+pip list
+//查看有沒有顯示如下的版本
+torch-scatter  2.1.2+pt23cu118
+```
+## 7.安裝vgn
 打開終端機輸入: 
 ```
 cd Grasp_detection_GIGA
-pip install -e . //安裝vgn
+
+//安裝vgn
+pip install -e .               
 ```
-## 9.編譯C++原始碼
+## 8.編譯C++原始碼
 編譯src裡的vgn資料夾c++給python,編譯完後會自動把build/lib.linux-x86_64-3.8/src/內的資料夾複製進scripts中的資料夾中並覆蓋
 
 因為這步驟在windows底下會出錯只能在linux中使用推測因為windows會調用Microsoft Visual Studio裡的編譯器來做會導致出錯
@@ -86,9 +107,9 @@ python scripts/convonet_setup.py build_ext --inplace
 進入scripts資料夾
 在終端機打上指令產生資料 範例是產生積木資料
 
-
 ```
 cd scripts
+
 python generate_data_parallel.py --scene pile --object-set blocks2 --num-grasps 4000000 --num-proc 1 --save-scene ./data/pile/blocks
 ```
 參數說明:
@@ -199,8 +220,9 @@ Sundries
 ```
 python scripts/main.py
 ```
-# 提醒事項
+# 注意事項
 1.常使用的套件如果沒有包含，請再自行安裝
 
-2.cal4marker_V1.py 已沒在使用，請改用 V2 版本
+2.#出現xcb錯誤時就可以把main.py 37行 #os.environ.pop("QT_QPA_PLATFORM_PLUGIN_PATH") 註解去掉或是加上註解，看那一種情況可以正常執行！！！！因為opencv跟pyqt5的xcb會有衝突
+
 

@@ -6,43 +6,8 @@ import json
 from scipy.spatial.transform import Rotation as R
 font = cv2.FONT_HERSHEY_SIMPLEX #font for displaying text (below)
 
-def rotation_matrix_to_quaternion(R):
-    trace = np.trace(R)
-    if trace > 0:
-        S = 0.5 / np.sqrt(trace + 1.0)
-        w = 0.25 / S
-        x = (R[2, 1] - R[1, 2]) * S
-        y = (R[0, 2] - R[2, 0]) * S
-        z = (R[1, 0] - R[0, 1]) * S
-    elif R[0, 0] > R[1, 1] and R[0, 0] > R[2, 2]:
-        S = 2.0 * np.sqrt(1.0 + R[0, 0] - R[1, 1] - R[2, 2])
-        w = (R[2, 1] - R[1, 2]) / S
-        x = 0.25 * S
-        y = (R[0, 1] + R[1, 0]) / S
-        z = (R[0, 2] + R[2, 0]) / S
-    elif R[1, 1] > R[2, 2]:
-        S = 2.0 * np.sqrt(1.0 + R[1, 1] - R[0, 0] - R[2, 2])
-        w = (R[0, 2] - R[2, 0]) / S
-        x = (R[0, 1] + R[1, 0]) / S
-        y = 0.25 * S
-        z = (R[1, 2] + R[2, 1]) / S
-    else:
-        S = 2.0 * np.sqrt(1.0 + R[2, 2] - R[0, 0] - R[1, 1])
-        w = (R[1, 0] - R[0, 1]) / S
-        x = (R[0, 2] + R[2, 0]) / S
-        y = (R[1, 2] + R[2, 1]) / S
-        z = 0.25 * S
-
-    return np.array([w, x, y, z])
-
 #使用一張影像計算四元數
 def Img_Pick_ArUco_detect(img,intrinsic_matrix: np.array, distortion_coefficients: np.array, Length:int)-> dict:
-    # cv2.aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_250)
-    # parameters =  cv2.aruco.DetectorParameters()
-    # detector = cv2.aruco.ArucoDetector(cv2.aruco_dict , parameters)
-    # corners, ids, rejected_img_points = detector.detectMarkers(img)
-    # #使用aruco.detectMarkers()函数可以检测到marker，返回ID和标志板的4个角点坐标
-    # #corners, ids, rejectedImgPoints = cv2.aruco.detectMarkers(gray,aruco_dict,parameters=parameters)
 
 #    如果找不打id
     ARUCO_DICTIONARY = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_1000)
@@ -62,7 +27,7 @@ def Img_Pick_ArUco_detect(img,intrinsic_matrix: np.array, distortion_coefficient
             for i in range(len(ids)):
                 print(f"intrinsic_matrix: {intrinsic_matrix}")
                 rvec, tvec, _ = cv2.aruco.estimatePoseSingleMarkers(corners[i], Length, intrinsic_matrix, distortion_coefficients)
-                frame = cv2.drawFrameAxes(frame, intrinsic_matrix, distortion_coefficients, rvec, tvec, 30)
+                frame = cv2.drawFrameAxes(frame, intrinsic_matrix, distortion_coefficients, rvec, tvec, Length)
                 # frame = workspace_AR(frame, tvec[i], rvec[i], intrinsic_matrix, distortion_coefficients, WORKSPACE_SIZE_MM, TSDF_SIZE)
                 break
 
