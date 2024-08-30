@@ -58,7 +58,7 @@ OFFSET = {
         "Block": 70,
         "TT_cube": 90,  #太重最好抓深一點
         "Bolt": 70,
-        "Sundries":70
+        "Sundries":80
     }
 MODEL_PATH = {
         "Block": "./scripts/data/models/Block_giga.pt",

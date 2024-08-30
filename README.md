@@ -2,13 +2,14 @@
 > numpy注意要能使用np.int只能使用1.20以下或是1.23.5 (已在requirement.txt指定版本)  
 目前使用1.22.4	
 而 scikit-image==0.19.0 (已在requirement.txt指定版本)
-
-# 安裝ros: 
+# 環境安裝
+## 1.安裝ros: 
 ```
-sudo sh bash ros1_noetic_install.sh 就會自動安裝
+sudo sh bash ros1_noetic_install.sh 
 ```
+就會自動安裝
 
-# 安裝Anaconda
+## 2.安裝Anaconda
 推薦安裝在/home/你的使用者名稱/anaconda3 裡面
 conda未啟動解決方式：https://developer.huawei.com/consumer/cn/blog/topic/03940616429410292
 
@@ -17,7 +18,7 @@ conda未啟動解決方式：https://developer.huawei.com/consumer/cn/blog/topic
 sudo sh Anaconda3-2024.02-1-Linux-x86_64.sh 
 ```
 
-# (推薦)透過.yaml產生已安裝好的環境
+## 3.(推薦)透過.yaml產生已安裝好的環境
 ```
 conda env create --file environment.yaml --name 自行定義名字
 ```
@@ -27,7 +28,7 @@ conda env create --file environment.yaml --name 自行定義名字
 pip install -r requirements.txt
 ```
 
-# 套件安裝
+## 4.套件安裝
 ```
 pip install opencv-contrib-python==4.6.0.66
 pip install numpy==1.22.4
@@ -40,7 +41,7 @@ pip install networkx==2.2
 只靠requirements.txt也許torch少了些其他東西下方為安裝指定torch版本(當下是2.2.2)
 參考來源:https://pytorch.org/get-started/locally/
 
-# torch安裝
+## 5.torch安裝
 其他版本torch參考來源:https://pytorch.org/get-started/previous-versions/ 不要用stable
 
 其他版本torch範例 pip install torch==1.7.0 torchvision==0.8.0 torchaudio==0.7.0
@@ -48,7 +49,7 @@ pip install networkx==2.2
 pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cu118
 ```
 
-# 測試：
+## 6.測試：
 在python中查看自己對應的版本理論上torch應該是2.2.2 cuda應該是11.8也就是cu118
 終端機裡打上python啟動環境或是vscode中新增一份.py檔案
 
@@ -63,16 +64,16 @@ print(torch.backends.cudnn.version())
 顯示  8700
 ```
 
-# 安裝torch-scatter額外函式庫在下方對應的版本如下：
+## 7.安裝torch-scatter額外函式庫在下方對應的版本如下：
 pip install torch-scatter -f https://data.pyg.org/whl/torch-2.2.2+cu118.html
 
-# 安裝vgn
+## 8.安裝vgn
 打開終端機輸入: 
 ```
 cd Grasp_detection_GIGA
 pip install -e . //安裝vgn
 ```
-# 編譯C++原始碼
+## 9.編譯C++原始碼
 編譯src裡的vgn資料夾c++給python,編譯完後會自動把build/lib.linux-x86_64-3.8/src/內的資料夾複製進scripts中的資料夾中並覆蓋
 
 因為這步驟在windows底下會出錯只能在linux中使用推測因為windows會調用Microsoft Visual Studio裡的編譯器來做會導致出錯
@@ -80,8 +81,8 @@ pip install -e . //安裝vgn
 ```
 python scripts/convonet_setup.py build_ext --inplace 
 ```
-
-# 產生資料集
+# 產生訓練資料
+## 1.產生資料集
 進入scripts資料夾
 在終端機打上指令產生資料 範例是產生積木資料
 
@@ -109,20 +110,20 @@ python generate_data_parallel.py --scene pile --object-set blocks2 --num-grasps 
 --add-noise 針對dataset添加雜訊
 
 
-# 平衡正負樣本的數量
+## 2.平衡正負樣本的數量
 python scripts/clean_balance_data.py ./data/pile/blocks
 
-# 產生Occupancy probility
+## 3.產生Occupancy probility
 產生occupancy probility的資料
 ```
 python save_occ_data_parallel.py ./data/pile/blocks 100000 2 --num-proc 1
 ```
-# 轉成訓練用格式資料集
+## 4.轉成訓練用格式資料集
 ```
 python construct_dataset_parallel.py --num-proc 1 --single-view --add-noise dex data/pile/blocks data/dataset/blocks
 ```
 
-# 訓練模型
+## 5.訓練模型
 ```
 python scripts/train_giga.py --dataset dataset/pile/blocks --dataset_raw data/pile/blocks
 ```
@@ -134,7 +135,8 @@ python scripts/train_giga.py --dataset dataset/pile/blocks --dataset_raw data/pi
 
 --dataset_raw 路徑是使用generate_data_parallel.py 產生的原始夾取資料
 
-# GIGA模擬夾取(範例)
+# 夾取測試
+## 1.GIGA模擬夾取(範例)
 ```
 # 積木
 python sim_grasp_multiple.py --num-view 1 --object-set blocks2 --scene pile --num-rounds 100 --sideview --add-noise dex --force --best --model data/models/Block_giga.pt --type giga --result-path /path/to/result --sim-gui
@@ -171,7 +173,7 @@ python sim_grasp_multiple.py --num-view 1 --object-set TT_cube --scene pile --nu
 
 
 
-# 實際環境夾取:
+## 2.實際環境夾取:
 
 連接相機及啟動Rviz:
 
