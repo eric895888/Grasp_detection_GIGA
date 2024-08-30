@@ -208,18 +208,24 @@ roslaunch realsense2_camera rs_camera.launch align_depth:=true depth_width:=640 
 rosrun rviz rviz -d /home/robotic/Grasp_detection_GIGA/Grasp.rviz
 ```
 
-更改main.py 44行:模型名稱可選四種:
+執行（選一種）：
+
+1.開啟vscode 打開mian.py並執行,預設Block,可以修改880行更換
+parser.add_argument("--model", type=str, default="Block")
+
+2.或是終端機中打下方指令
 ```
+python scripts/main.py --model Block
+```
+
+```
+共有下面四種可以替換類別
 Block
 TT_cube
 Bolt
 Sundries
 ```
 
-執行夾取：
-```
-python scripts/main.py
-```
 # 注意事項
 1.常使用的套件如果沒有包含，請再自行安裝
 

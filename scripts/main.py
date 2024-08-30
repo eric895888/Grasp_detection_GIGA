@@ -223,12 +223,13 @@ class GraspController(object):
         self.finger_depth=0.05
         self.size = WorkSpaceSize #workspace空間
         self.tsdf_server = TSDFServer()
-        self.plan_grasps = VGNImplicit(model_path=args.model,
+        self.plan_grasps = VGNImplicit(model_path=MODEL_PATH[args.model],
                                        model_type="giga", 
                                        best=True, 
                                        force_detection=True,
                                       )
         self.count=0
+        print("!!!!!!"+MODEL_PATH[args.model])
         rospy.loginfo("Ready to take action")
 
     def run(self, robot_arm: ArmThread, T_Camera2Gripper: np.array, grasp_object=False,palce_location="table")->bool:
@@ -670,7 +671,7 @@ class TSDFServer(object): #只會做一次
 
 #
 class MainWindow(QMainWindow,Ui_MainWindow):
-    def __init__(self, parent=None):
+    def __init__(self, args ,parent=None):
         super(MainWindow, self).__init__(parent)
         self.setupUi(self)
         #--------------------Bind UI with func（Start）--------------------------------#代表對應的按鈕
@@ -713,9 +714,9 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         #self.tsdf_server = TSDFServer()
         # --------------------rviz set（End）-------------------------
         #---------------------args-----------------------------------
-        parser = argparse.ArgumentParser()
-        parser.add_argument("--model", type=Path, default=MODEL_PATH[object_name])
-        self.args = parser.parse_args()
+        # parser = argparse.ArgumentParser()
+        # parser.add_argument("--model", type=Path, default=MODEL_PATH[object_name])
+        self.args = args
         #---------------------args (End)-----------------------------
     def Detect_four_ArUco(self):
         pos_list=[]
@@ -860,25 +861,26 @@ class MainWindow(QMainWindow,Ui_MainWindow):
 
     def GripperOpenF(self):
         try:
-            #self._stream_thread.pause() #暫停取像
             print("Open Gripper")
             self.robot_arm.grip.gripper_on()
-            #self._stream_thread.restart() #恢復取像
         except Exception as e:
             self.OutPut.setText(str(e))
 
     def GripperCloseF(self):
         try:
-            #self._stream_thread.pause() #暫停取像
             print("Close Gripper")
             self.robot_arm.grip.gripper_off()
-            #self._stream_thread.restart() #恢復取像
         except Exception as e:
             self.OutPut.setText(str(e))
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    #parser.add_argument("--model", type=Path, default=MODEL_PATH[object_name])
+    parser.add_argument("--model", type=str, default="Block")
+    args = parser.parse_args()
+
     app = QApplication(sys.argv)
-    window = MainWindow()
+    window = MainWindow(args)
     window.show()
     sys.exit(app.exec_())
