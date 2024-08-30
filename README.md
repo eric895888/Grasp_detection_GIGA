@@ -110,11 +110,11 @@ python scripts/convonet_setup.py build_ext --inplace
 ```
 cd scripts
 
-python generate_data_parallel.py --scene pile --object-set blocks2 --num-grasps 4000000 --num-proc 1 --save-scene ./data/pile/blocks
+python generate_data_parallel.py --scene pile --object-set blocks --num-grasps 4000000 --num-proc 1 --save-scene ./data/pile/blocks
 ```
 參數說明:
 
-範例是產生blocks積木資料綠色部分的字可以換成M24_60mm_bolt(螺絲)，TT_cube(金屬方塊)，sundries(生活雜物)
+範例是產生blocks積木資料可以換成 bolt(螺絲)，TT_cube(金屬方塊)，sundries(生活雜物)
 
 --scene 設定pile表示散堆擺放模式
 
@@ -160,7 +160,7 @@ python scripts/train_giga.py --dataset dataset/pile/blocks --dataset_raw data/pi
 ## 1.GIGA模擬夾取(範例)
 ```
 # 積木
-python sim_grasp_multiple.py --num-view 1 --object-set blocks2 --scene pile --num-rounds 100 --sideview --add-noise dex --force --best --model data/models/Block_giga.pt --type giga --result-path /path/to/result --sim-gui
+python sim_grasp_multiple.py --num-view 1 --object-set blocks --scene pile --num-rounds 100 --sideview --add-noise dex --force --best --model data/models/Block_giga.pt --type giga --result-path /path/to/result --sim-gui
 
 # 金屬方塊
 python sim_grasp_multiple.py --num-view 1 --object-set TT_cube --scene pile --num-rounds 100 --sideview --add-noise dex --force --best --model data/models/TT_cube_giga.pt --type giga --result-path /path/to/result --sim-gui
