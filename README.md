@@ -168,7 +168,7 @@ python sim_grasp_multiple.py --num-view 1 --object-set TT_cube --scene pile --nu
 
 參數說明:
 
-範例是產生積木資料
+範例是夾取測試的指令
 
 --num-view 視角數量
 

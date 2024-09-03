@@ -634,7 +634,7 @@ class GraspController(object):
             ax.set_xlim((-1000, 1000))
             ax.set_ylim((-1000, 1000))
             ax.set_zlim((-1000, 1000))
-            #plt.show() #顯示座標圖
+            plt.show() #顯示座標圖
         return  T_TiltedGripper2Base, T_ArUco2Camera_new_m
 
     
