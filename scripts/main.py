@@ -692,7 +692,6 @@ class MainWindow(QMainWindow,Ui_MainWindow):
         self.intrinsic = np.empty((3,3))
         self.distCoeffs = np.empty((1,5))
         self.Camera2Gripper = np.empty((4,4))
-        self.depth_value=0
         # --------------------Bind UI with func（End）--------------------------------
         self.robot_arm = ArmThread()
         # --------------------rviz set（start）-----------------------
