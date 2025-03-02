@@ -1,4 +1,4 @@
-# Grasp_detection_GIGA
+# Grasp_Detection_GIGA
 > numpy注意要能使用np.int只能使用1.20以下或是1.23.5 (已在requirement.txt指定版本)  
 目前使用1.22.4	
 而 scikit-image==0.19.0 (已在requirement.txt指定版本)
